@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleQrReader</string>
+    <string name="Scan">Click To Scan 👐</string>
+    <string name="Scan_done">Scanning Complete 👍</string>
+</resources>
