@@ -2,28 +2,33 @@ package com.johnmelodyme.simpleqrreader;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
-import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.android.gms.vision.barcode.BarcodeDetector.Builder;
-
 import java.io.IOException;
-import java.security.CodeSource;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+/**
+ * @Author: John Melody Melissa
+ * @Project: Cryptography
+ * @Inpired : By GF TAN SIN DEE <3
+ */
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "QR";
@@ -135,5 +140,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         init();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.about){
+            new SweetAlertDialog(MainActivity.this)
+                    .setTitleText("Version 1.0.0")
+                    .setContentText("Developed by John Melody Melissa")
+                    .show();
+            return true;
+        }
+
+        if (id == R.id.source){
+            String URL;
+            URL = getResources().getString(R.string.url);
+            Intent SOURCE_CODE;
+            SOURCE_CODE = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+            startActivity(SOURCE_CODE);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
