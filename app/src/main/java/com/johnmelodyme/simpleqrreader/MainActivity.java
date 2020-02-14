@@ -3,6 +3,7 @@ package com.johnmelodyme.simpleqrreader;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -26,7 +27,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * @Author: John Melody Melissa
- * @Project: Cryptography
+ * @Project: QRREADER
  * @Inpired : By GF TAN SIN DEE <3
  */
 
@@ -51,16 +52,19 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
+        //TODO SCAN_BUTTON:
         Scan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (intentData.length() > 0 ){
-                    //
+                    cameraSource.stop();
                 }
+                Scan_btn.setText(R.string.Scan_done);
             }
         });
     }
 
+    //TODO Init
     private void init() {
         barcodeDetector = new BarcodeDetector
                 .Builder(MainActivity.this)
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 .setAutoFocusEnabled(true)
                 .build();
 
+        // TODO SURFACE_VIEW:
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -104,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // TODO BARCODE_DETECTOR:
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
@@ -119,10 +125,16 @@ public class MainActivity extends AppCompatActivity {
                 barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
                     CodeValue.post(new Runnable() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void run() {
                             intentData = barcodes.valueAt(0).displayValue;
-                            CodeValue.setText(intentData);
+                            CodeValue.setText("Data: " +intentData);
+                            String result = CodeValue
+                                    .getText()
+                                    .toString()
+                                    .trim();
+                            Log.d(TAG, "CodeValue: " + result);
                         }
                     });
                 }
@@ -134,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         cameraSource.release();
+        Scan_btn.setText(R.string.Scan);
     }
 
     @Override

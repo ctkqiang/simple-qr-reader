@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SimpleQrReader</string>
-    <string name="Scan">Click To Scan 👐</string>
-    <string name="Scan_done">Scanning Complete 👍</string>
+    <string name="Scan">Click To Freeze ❄</string>
+    <string name="Scan_done">⛄Freeze Already⛄</string>
     <string name="about">About</string>
     <string name="source">Source Code</string>
     <string name="url">https://github.com/johnmelodyme/simple-qr-reader</string>
