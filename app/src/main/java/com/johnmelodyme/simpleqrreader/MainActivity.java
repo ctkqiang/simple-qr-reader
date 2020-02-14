@@ -52,16 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        //TODO SCAN_BUTTON:
-        Scan_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (intentData.length() > 0 ){
-                    cameraSource.stop();
-                }
-                Scan_btn.setText(R.string.Scan_done);
-            }
-        });
     }
 
     //TODO Init
@@ -131,25 +121,21 @@ public class MainActivity extends AppCompatActivity {
                             intentData = barcodes.valueAt(0).displayValue;
                             CodeValue.setText("Data: " +intentData);
                             String result, url;
+                            url = intentData;
                             result = CodeValue
                                     .getText()
                                     .toString()
                                     .trim();
                             Log.d(TAG, "CodeValue: " + result);
 
-                            url = intentData;
-
-                            if (Scan_btn.isPressed()){
+                            if (intentData.length() > 0 ){
+                                cameraSource.stop();
                                 Intent URL_DATA;
                                 URL_DATA = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                 startActivity(URL_DATA);
                             }
                         }
                     });
-                }
-
-                if(intentData.contains("http:")){
-                   //
                 }
             }
         });
