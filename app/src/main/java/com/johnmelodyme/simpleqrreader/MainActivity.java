@@ -130,13 +130,26 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             intentData = barcodes.valueAt(0).displayValue;
                             CodeValue.setText("Data: " +intentData);
-                            String result = CodeValue
+                            String result, url;
+                            result = CodeValue
                                     .getText()
                                     .toString()
                                     .trim();
                             Log.d(TAG, "CodeValue: " + result);
+
+                            url = intentData;
+
+                            if (Scan_btn.isPressed()){
+                                Intent URL_DATA;
+                                URL_DATA = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(URL_DATA);
+                            }
                         }
                     });
+                }
+
+                if(intentData.contains("http:")){
+                   //
                 }
             }
         });
