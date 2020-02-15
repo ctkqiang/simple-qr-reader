@@ -4,5 +4,6 @@
     <string name="Scan_done">⛄Yup⛄</string>
     <string name="about">About</string>
     <string name="source">Source Code</string>
+    <string name="donate">Support this project</string>
     <string name="url">https://github.com/johnmelodyme/simple-qr-reader</string>
 </resources>

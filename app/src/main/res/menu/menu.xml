@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/donate"
+        android:title="@string/donate"
+        android:icon="@mipmap/razerpay"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/source"
         android:title="@string/source"
         app:showAsAction="collapseActionView"/>

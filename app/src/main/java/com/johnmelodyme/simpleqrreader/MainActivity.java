@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private SurfaceView surfaceView;
     private TextView CodeValue;
     private Button Scan_btn;
-    private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
     private String intentData = "";
 
@@ -49,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceView);
         CodeValue = findViewById(R.id.QrValue);
         Scan_btn = findViewById(R.id.Scan);
-
         init();
-
     }
 
     //TODO Init
     private void init() {
-        barcodeDetector = new BarcodeDetector
+        BarcodeDetector barcodeDetector = new BarcodeDetector
                 .Builder(MainActivity.this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
@@ -89,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
+                /////////////////////
                 cameraSource.stop();
             }
         });
@@ -120,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             intentData = barcodes.valueAt(0).displayValue;
                             CodeValue.setText("Data: " +intentData);
+                            Toast.makeText(getApplicationContext(),
+                                    intentData,
+                                    Toast.LENGTH_SHORT)
+                                    .show();
                             String result, url;
                             url = intentData;
                             result = CodeValue
@@ -127,9 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                     .toString()
                                     .trim();
                             Log.d(TAG, "CodeValue: " + result);
-
-                            if (intentData.length() > 0 ){
-                                cameraSource.stop();
+                            if (intentData.contains("www") || intentData.contains("http") || intentData.contains("https") || intentData.contains("html")){
                                 Intent URL_DATA;
                                 URL_DATA = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                                 startActivity(URL_DATA);
@@ -163,6 +162,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if (id == R.id.donate) {
+            Intent donate;
+            donate = new Intent(MainActivity.this, donateme.class);
+            startActivity(donate);
+            return true;
+        }
 
         if (id == R.id.about){
             new SweetAlertDialog(MainActivity.this)
