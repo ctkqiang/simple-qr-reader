@@ -1,6 +1,7 @@
 package com.johnmelodyme.simpleqrreader;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -22,6 +23,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.core.CrashlyticsCore;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraSource cameraSource;
     private String intentData = "";
     private FirebaseAnalytics firebaseAnalytics;
+    private CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
                                     intentData,
                                     Toast.LENGTH_SHORT)
                                     .show();
+//                            Snackbar snackbar = Snackbar
+//                                    .make(coordinatorLayout, intentData,
+//                                            Snackbar.LENGTH_LONG);
+//                            snackbar.show();
                             String result, url;
                             url = intentData;
                             result = CodeValue
