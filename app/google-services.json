@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1009588088860",
+    "firebase_url": "https://qrreader-79ce8.firebaseio.com",
+    "project_id": "qrreader-79ce8",
+    "storage_bucket": "qrreader-79ce8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009588088860:android:087d60f2bccca5ea592fd9",
+        "android_client_info": {
+          "package_name": "com.johnmelodyme.simpleqrreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009588088860-bq4djkou0go0rug16lo8lkmuahdnato7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.johnmelodyme.simpleqrreader",
+            "certificate_hash": "a44f0a8394a2c488158030a8f9c2efac2245dbb4"
+          }
+        },
+        {
+          "client_id": "1009588088860-rke90i98o3lda2rv64gu5atd4v3c11ft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZXteJ2DJF-RpUEd7KFh060ZMv1Te4_9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009588088860-rke90i98o3lda2rv64gu5atd4v3c11ft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

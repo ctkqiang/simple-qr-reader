@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +22,9 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.core.CrashlyticsCore;
+
 import java.io.IOException;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Scan_btn;
     private CameraSource cameraSource;
     private String intentData = "";
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         surfaceView = findViewById(R.id.surfaceView);
         CodeValue = findViewById(R.id.QrValue);
         Scan_btn = findViewById(R.id.Scan);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         init();
     }
 
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.d(TAG, "surfaceCreated: " + e);
-                }
+            }
 
             }
 
